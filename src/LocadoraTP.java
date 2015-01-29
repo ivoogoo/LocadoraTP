@@ -6,17 +6,9 @@ class LocadoraTP extends JFrame implements ActionListener{
     
     private JTabbedPane abas;
     private JPanel pCadastro, pAluguel, pReserva, pPesquisa, pDevolucao;
-    private JButton bFilme;
+    private JButton bFilme, bCd, bPessoa;
     private JPanel pCadastroTipo;
-    private JButton bCd;
-    private JButton bPessoa;
-    private JPanel pCadastramento;
-    private JPanel pCadastroPessoa;
-    private JPanel pCadastroCd;
-    
-    private JLabel text;
-    private int cont;
-
+    private JPanel pCadastramento, pCadastroPessoa, pCadastroCd, pCadastroFilme;
 
     public LocadoraTP(){		
         
@@ -51,8 +43,11 @@ class LocadoraTP extends JFrame implements ActionListener{
         
         //BOTÕES LATERAIS DOS CADASTROS
         bPessoa = new JButton ("CLIENTE");
+        bPessoa.addActionListener(this); 
         bCd = new JButton ("CD");
+        bCd.addActionListener(this); 
         bFilme = new JButton ("FILME");
+        bFilme.addActionListener(this); 
         
         pCadastroTipo = new JPanel();
 	pCadastroTipo.setLayout((new GridLayout(3, 1)));
@@ -66,13 +61,6 @@ class LocadoraTP extends JFrame implements ActionListener{
         
         pCadastro.add(pCadastroTipo, BorderLayout.WEST);
         pCadastro.add(pCadastramento, BorderLayout.CENTER);
-        
-        //PAINEL DE CADASTRO DE PESSOAS
-        pCadastroPessoa = new JPanel();
-        pCadastroPessoa.setLayout(new GridLayout(5,5));
-        
-        pCadastramento.add(pCadastroPessoa);
-        
         
     }
 
@@ -108,13 +96,42 @@ class LocadoraTP extends JFrame implements ActionListener{
         Object source = evt.getSource();
         
         if (source == bPessoa){
-            JOptionPane.showMessageDialog(null, "PESSOA");
-        }
-        if (source == bCd){
-            JOptionPane.showMessageDialog(null, "CD");
-        }
-        if (source == bFilme){
+            pCadastramento.removeAll();
             
+            pCadastroPessoa = new JPanel();
+            pCadastroPessoa.setLayout(new BorderLayout());
+            pCadastroPessoa.add(new JLabel("CADASTRO DE CLIENTES"), BorderLayout.NORTH);
+            pCadastroPessoa.add(new JLabel(""), BorderLayout.NORTH);
+            pCadastroPessoa.add(new JLabel(""), BorderLayout.NORTH);
+            pCadastroPessoa.add(new JLabel("NOME:"), BorderLayout.NORTH);
+            
+            pCadastramento.add(pCadastroPessoa);
+            pCadastramento.validate();
+            pCadastramento.repaint();
+            
+        }else if(source == bCd){
+            
+            pCadastramento.removeAll();
+            
+            pCadastroCd = new JPanel();
+            pCadastroCd.setLayout(new BorderLayout());
+            pCadastroCd.add(new JLabel("CADASTRO DE CDS"), BorderLayout.NORTH);
+            
+            pCadastramento.add(pCadastroCd);
+            pCadastramento.validate();
+            pCadastramento.repaint();
+            
+        }else if (source == bFilme){
+            
+            pCadastramento.removeAll();
+            
+            pCadastroFilme = new JPanel();
+            pCadastroFilme.setLayout(new BorderLayout());
+            pCadastroFilme.add(new JLabel("CADASTRO DE FILMES"), BorderLayout.NORTH);
+            
+            pCadastramento.add(pCadastroFilme);
+            pCadastramento.validate();
+            pCadastramento.repaint();
         }
         
     }
